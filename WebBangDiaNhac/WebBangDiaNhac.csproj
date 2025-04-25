@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,13 +129,109 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BinhLuanGopY.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietDonHang__.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChuCuaHang.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanhMucSanPham.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonHang.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonVanChuyen.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonViVanChuyen.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GioHang.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KhachHang.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Login.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBangDiaNhac.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBangDiaNhac.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBangDiaNhac.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBangDiaNhac.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBangDiaNhac.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhanQuyen.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SanPham.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Assets\.gitignore" />
+    <Content Include="Areas\Assets\dist\401.html" />
+    <Content Include="Areas\Assets\dist\404.html" />
+    <Content Include="Areas\Assets\dist\500.html" />
+    <Content Include="Areas\Assets\dist\assets\demo\chart-area-demo.js" />
+    <Content Include="Areas\Assets\dist\assets\demo\chart-bar-demo.js" />
+    <Content Include="Areas\Assets\dist\assets\demo\chart-pie-demo.js" />
+    <Content Include="Areas\Assets\dist\assets\demo\datatables-demo.js" />
+    <Content Include="Areas\Assets\dist\assets\img\error-404-monochrome.svg" />
+    <Content Include="Areas\Assets\dist\charts.html" />
+    <Content Include="Areas\Assets\dist\css\styles.css" />
+    <Content Include="Areas\Assets\dist\index.html" />
+    <Content Include="Areas\Assets\dist\js\scripts.js" />
+    <Content Include="Areas\Assets\dist\layout-sidenav-light.html" />
+    <Content Include="Areas\Assets\dist\layout-static.html" />
+    <Content Include="Areas\Assets\dist\login.html" />
+    <Content Include="Areas\Assets\dist\password.html" />
+    <Content Include="Areas\Assets\dist\register.html" />
+    <Content Include="Areas\Assets\dist\tables.html" />
+    <Content Include="Areas\Assets\scripts\build-assets.js" />
+    <Content Include="Areas\Assets\scripts\build-pug.js" />
+    <Content Include="Areas\Assets\scripts\build-scripts.js" />
+    <Content Include="Areas\Assets\scripts\build-scss.js" />
+    <Content Include="Areas\Assets\scripts\clean.js" />
+    <Content Include="Areas\Assets\scripts\render-assets.js" />
+    <Content Include="Areas\Assets\scripts\render-pug.js" />
+    <Content Include="Areas\Assets\scripts\render-scripts.js" />
+    <Content Include="Areas\Assets\scripts\render-scss.js" />
+    <Content Include="Areas\Assets\scripts\sb-watch.js" />
+    <Content Include="Areas\Assets\scripts\start-debug.js" />
+    <Content Include="Areas\Assets\scripts\start.js" />
+    <Content Include="Areas\Assets\src\assets\demo\chart-area-demo.js" />
+    <Content Include="Areas\Assets\src\assets\demo\chart-bar-demo.js" />
+    <Content Include="Areas\Assets\src\assets\demo\chart-pie-demo.js" />
+    <Content Include="Areas\Assets\src\assets\demo\datatables-demo.js" />
+    <Content Include="Areas\Assets\src\assets\img\error-404-monochrome.svg" />
+    <Content Include="Areas\Assets\src\js\scripts.js" />
+    <Content Include="audio\dummy-audio.mp3" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -143,15 +248,188 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\audioplayer.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\classy-nav.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\magnific-popup.css" />
+    <Content Include="css\one-music-icon.css" />
+    <Content Include="css\owl.carousel.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\classy.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\icomoon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\10.jpg" />
+    <Content Include="images\2.jpg" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\4.jpg" />
+    <Content Include="images\5.jpg" />
+    <Content Include="images\6.jpg" />
+    <Content Include="images\7.jpg" />
+    <Content Include="images\8.jpg" />
+    <Content Include="images\9.jpg" />
+    <Content Include="img\bg-img\a1.jpg" />
+    <Content Include="img\bg-img\a10.jpg" />
+    <Content Include="img\bg-img\a11.jpg" />
+    <Content Include="img\bg-img\a12.jpg" />
+    <Content Include="img\bg-img\a2.jpg" />
+    <Content Include="img\bg-img\a3.jpg" />
+    <Content Include="img\bg-img\a4.jpg" />
+    <Content Include="img\bg-img\a5.jpg" />
+    <Content Include="img\bg-img\a6.jpg" />
+    <Content Include="img\bg-img\a7.jpg" />
+    <Content Include="img\bg-img\a8.jpg" />
+    <Content Include="img\bg-img\a9.jpg" />
+    <Content Include="img\bg-img\add.gif" />
+    <Content Include="img\bg-img\add2.gif" />
+    <Content Include="img\bg-img\add3.gif" />
+    <Content Include="img\bg-img\b1.jpg" />
+    <Content Include="img\bg-img\b2.jpg" />
+    <Content Include="img\bg-img\b3.jpg" />
+    <Content Include="img\bg-img\b4.jpg" />
+    <Content Include="img\bg-img\bg-1.jpg" />
+    <Content Include="img\bg-img\bg-2.jpg" />
+    <Content Include="img\bg-img\bg-3.jpg" />
+    <Content Include="img\bg-img\bg-4.jpg" />
+    <Content Include="img\bg-img\blog1.jpg" />
+    <Content Include="img\bg-img\blog2.jpg" />
+    <Content Include="img\bg-img\blog3.jpg" />
+    <Content Include="img\bg-img\breadcumb.jpg" />
+    <Content Include="img\bg-img\breadcumb2.jpg" />
+    <Content Include="img\bg-img\breadcumb3.jpg" />
+    <Content Include="img\bg-img\e1.jpg" />
+    <Content Include="img\bg-img\e2.jpg" />
+    <Content Include="img\bg-img\e3.jpg" />
+    <Content Include="img\bg-img\e4.jpg" />
+    <Content Include="img\bg-img\e5.jpg" />
+    <Content Include="img\bg-img\e6.jpg" />
+    <Content Include="img\bg-img\e7.jpg" />
+    <Content Include="img\bg-img\e8.jpg" />
+    <Content Include="img\bg-img\e9.jpg" />
+    <Content Include="img\bg-img\fa.jpg" />
+    <Content Include="img\bg-img\pa1.jpg" />
+    <Content Include="img\bg-img\pa2.jpg" />
+    <Content Include="img\bg-img\pa3.jpg" />
+    <Content Include="img\bg-img\pa4.jpg" />
+    <Content Include="img\bg-img\pa5.jpg" />
+    <Content Include="img\bg-img\pa6.jpg" />
+    <Content Include="img\bg-img\pa7.jpg" />
+    <Content Include="img\bg-img\rosiebia.png" />
+    <Content Include="img\bg-img\s1.jpg" />
+    <Content Include="img\bg-img\s2.jpg" />
+    <Content Include="img\bg-img\s3.jpg" />
+    <Content Include="img\bg-img\s4.jpg" />
+    <Content Include="img\bg-img\soobinbia.png" />
+    <Content Include="img\bg-img\soobin_bia.jpg" />
+    <Content Include="img\bg-img\t1.jpg" />
+    <Content Include="img\bg-img\wt1.jpg" />
+    <Content Include="img\bg-img\wt10.jpg" />
+    <Content Include="img\bg-img\wt11.jpg" />
+    <Content Include="img\bg-img\wt12.jpg" />
+    <Content Include="img\bg-img\wt2.jpg" />
+    <Content Include="img\bg-img\wt3.jpg" />
+    <Content Include="img\bg-img\wt4.jpg" />
+    <Content Include="img\bg-img\wt5.jpg" />
+    <Content Include="img\bg-img\wt6.jpg" />
+    <Content Include="img\bg-img\wt7.jpg" />
+    <Content Include="img\bg-img\wt8.jpg" />
+    <Content Include="img\bg-img\wt9.jpg" />
+    <Content Include="img\core-img\favicon.ico" />
+    <Content Include="img\core-img\logo.png" />
+    <Content Include="js\active.js" />
+    <Content Include="js\bootstrap\bootstrap.min.js" />
+    <Content Include="js\bootstrap\popper.min.js" />
+    <Content Include="js\jquery\jquery-2.2.4.min.js" />
+    <Content Include="js\plugins\plugins.js" />
+    <Content Include="Models\ModelBangDiaNhac.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelBangDiaNhac.Context.cs</LastGenOutput>
+      <DependentUpon>ModelBangDiaNhac.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModelBangDiaNhac.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelBangDiaNhac.edmx</DependentUpon>
+      <LastGenOutput>ModelBangDiaNhac.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ModelBangDiaNhac.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelBangDiaNhac.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelBangDiaNhac.edmx.diagram">
+      <DependentUpon>ModelBangDiaNhac.edmx</DependentUpon>
+    </Content>
+    <Content Include="fonts\classy.eot" />
+    <Content Include="fonts\classy.ttf" />
+    <Content Include="fonts\classy.woff" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Assets\.browserslistrc" />
+    <Content Include="Areas\Assets\.travis.yml" />
+    <Content Include="Areas\Assets\LICENSE" />
+    <Content Include="Areas\Assets\package-lock.json" />
+    <Content Include="Areas\Assets\package.json" />
+    <Content Include="Areas\Assets\README.md" />
+    <Content Include="Areas\Assets\src\pug\layouts\authentication.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\dashboard.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\error.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\footer.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\head\css.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\head\icons.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\head\meta.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\head\title.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\navigation\sidenav.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\navigation\topnav.pug" />
+    <Content Include="Areas\Assets\src\pug\layouts\includes\scripts.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\401.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\404.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\500.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\charts.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\includes\datatable.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\includes\page-header.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\index.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\layout-sidenav-light.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\layout-static.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\login.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\password.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\register.pug" />
+    <Content Include="Areas\Assets\src\pug\pages\tables.pug" />
+    <Content Include="Areas\Assets\src\scss\layout\_authentication.scss" />
+    <Content Include="Areas\Assets\src\scss\layout\_dashboard-default.scss" />
+    <Content Include="Areas\Assets\src\scss\layout\_dashboard-fixed.scss" />
+    <Content Include="Areas\Assets\src\scss\layout\_error.scss" />
+    <Content Include="Areas\Assets\src\scss\navigation\sidenav\_sidenav-dark.scss" />
+    <Content Include="Areas\Assets\src\scss\navigation\sidenav\_sidenav-light.scss" />
+    <Content Include="Areas\Assets\src\scss\navigation\sidenav\_sidenav.scss" />
+    <Content Include="Areas\Assets\src\scss\navigation\_nav.scss" />
+    <Content Include="Areas\Assets\src\scss\navigation\_topnav.scss" />
+    <Content Include="Areas\Assets\src\scss\styles.scss" />
+    <Content Include="Areas\Assets\src\scss\variables\_navigation.scss" />
+    <Content Include="Areas\Assets\src\scss\variables\_spacing.scss" />
+    <Content Include="Areas\Assets\src\scss\_global.scss" />
+    <Content Include="Areas\Assets\src\scss\_variables.scss" />
+    <Content Include="Areas\Admin\Views\SanPhams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -177,10 +455,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="scss\style.scss" />
+    <Content Include="scss\_fonts.scss" />
+    <Content Include="scss\_mixin.scss" />
+    <Content Include="scss\_responsive.scss" />
+    <Content Include="scss\_theme_color.scss" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\User\DangKy.cshtml" />
+    <Content Include="Views\User\DangNhap.cshtml" />
+    <Content Include="Views\User\DangXuat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Shop\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -208,6 +497,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -242,7 +534,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
