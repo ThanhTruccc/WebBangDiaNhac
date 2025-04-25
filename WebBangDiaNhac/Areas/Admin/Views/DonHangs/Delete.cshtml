@@ -1,0 +1,81 @@
+﻿@model WebBangDiaNhac.Models.DonHang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DonHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.danhSachSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.danhSachSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThaiDon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThaiDon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayDatHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayDatHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.triGiaDon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.triGiaDon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenNguoiNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNguoiNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChiTietDonHang__.idDonHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiTietDonHang__.idDonHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.hoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.hoTen)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
