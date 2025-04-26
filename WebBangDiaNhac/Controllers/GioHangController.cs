@@ -189,7 +189,7 @@ namespace WebBangDiaNhac.Controllers
                 ngayDatHang = DateTime.Now,
                 idKhachHang = nd.idKhachHang,  
                 tenNguoiNhan = tennguoinhan,
-                d = diachi,
+                diaChiGiaoHang = diachi,
                 DienThoaiNguoiNhan = phone,
                 NgayGiao = ngaygiao,
                 TinhTrangDonHang = 2,

@@ -27,6 +27,7 @@ namespace WebBangDiaNhac.Models
         public Nullable<System.DateTime> ngayDatHang { get; set; }
         public Nullable<decimal> triGiaDon { get; set; }
         public string tenNguoiNhan { get; set; }
+        public string diaChiGiaoHang { get; set; }
     
         public virtual ChiTietDonHang__ ChiTietDonHang__ { get; set; }
         public virtual KhachHang KhachHang { get; set; }

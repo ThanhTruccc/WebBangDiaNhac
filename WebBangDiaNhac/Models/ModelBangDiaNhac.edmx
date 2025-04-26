@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BangDiaNhacModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BangDiaNhacModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BinhLuanGopY">
           <Key>
             <PropertyRef Name="idBinhLuan" />
@@ -56,6 +56,7 @@
           <Property Name="ngayDatHang" Type="smalldatetime" />
           <Property Name="triGiaDon" Type="money" />
           <Property Name="tenNguoiNhan" Type="nvarchar" MaxLength="50" />
+          <Property Name="diaChiGiaoHang" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DonVanChuyen">
           <Key>
@@ -367,8 +368,7 @@
             <End Role="SanPham_DanhMuc" EntitySet="SanPham_DanhMuc" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BangDiaNhacModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -432,6 +432,7 @@
           <NavigationProperty Name="ChiTietDonHang__" Relationship="Self.FK_ChiTietDonHang___ToTable" FromRole="DonHang" ToRole="ChiTietDonHang__" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK_DonHang_ToTable" FromRole="DonHang" ToRole="KhachHang" />
           <NavigationProperty Name="DonVanChuyens" Relationship="Self.FK_DonVanChuyen_ToTable" FromRole="DonHang" ToRole="DonVanChuyen" />
+          <Property Name="diaChiGiaoHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DonVanChuyen">
           <Key>
@@ -778,6 +779,7 @@
           <EntitySetMapping Name="DonHangs">
             <EntityTypeMapping TypeName="BangDiaNhacModel.DonHang">
               <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="diaChiGiaoHang" ColumnName="diaChiGiaoHang" />
                 <ScalarProperty Name="idDonHang" ColumnName="idDonHang" />
                 <ScalarProperty Name="idKhachHang" ColumnName="idKhachHang" />
                 <ScalarProperty Name="danhSachSanPham" ColumnName="danhSachSanPham" />
