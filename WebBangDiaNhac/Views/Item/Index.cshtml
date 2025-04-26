@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebBangDiaNhac.Models.SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@using (Html.BeginForm("Index", "Item", FormMethod.Get))
+{
+    <p>
+        Tìm kiếm sản phẩm: @Html.TextBox("searchString", ViewBag.SearchString as string)
+        <input type="submit" value="Tìm" class="btn btn-primary" />
+    </p>
+}
+
+<style>
+    .pagination-container .btn {
+        margin: 2px;
+        border-radius: 4px;
+        color: white; /* Màu chữ */
+    }
+
+    .pagination-container .btn-primary {
+        background-color: #961b1e;
+        border-color: #961b1e;
+    }
+
+    .pagination-container .btn-default {
+        background-color: #f8f9fa;
+        border-color: #961b1e;
+        color: #961b1e;
+    }
+
+    .pagination-container .btn:hover {
+        background-color: #7d1416; /* Màu đậm hơn khi hover */
+        border-color: #7d1416;
+        color: white;
+    }
+</style>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+            <!-- Chỉnh độ rộng để hiển thị 3 món trên mỗi dòng -->
+            <div class="product-item" style="height: 500px; margin: 20px;">
+                <div>
+                    <div class="product discount product_filter" style="width: 280px; height: 280px;">
+                        <div class="product_image" style="width: 240px; margin: 30px; border-radius: 5px; text-align: center;">
+                            <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="@item.tenSanPham" style="max-width: 100%; max-height: 100%;" />
+                        </div>
+                        <div class="product_info">
+                            <h6 class="product_name">@item.tenSanPham</h6>
+                            <div class="product_price" style="font-size:20px">@String.Format("{0:#,##0} VNĐ", item.donGia)</div>
+                        </div>
+                        <div class="red_button add_to_cart_button" style=" display: flex;">
+                            <a href="@Url.Action("ChiTiet", "DatHang", new { id = item.idSanPham })">Đặt hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div class="pagination-container" style="text-align: center; margin-top: 20px;">
+    <!-- Nút "Trang đầu" và "Trang trước" -->
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a href="@Url.Action("Index", new { page = 1 })" class="btn btn-default">Trang đầu</a>
+        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })" class="btn btn-default">Trước</a>
+    }
+
+    <!-- Hiển thị các số trang -->
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        if (i == ViewBag.CurrentPage)
+        {
+            <span class="btn btn-primary">@i</span> <!-- Trang hiện tại -->
+        }
+        else
+        {
+            <a href="@Url.Action("Index", new { page = i })" class="btn btn-default">@i</a>
+        }
+    }
+
+    <!-- Nút "Trang sau" và "Trang cuối" -->
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })" class="btn btn-default">Sau</a>
+        <a href="@Url.Action("Index", new { page = ViewBag.TotalPages })" class="btn btn-default">Trang cuối</a>
+    }
+</div>

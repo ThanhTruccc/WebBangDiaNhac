@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebBangDiaNhac.Models.SanPham>
+@{
+    ViewBag.Title = "SXDanhMuc";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<h3 style="text-align:center;color:red"> SP theo danh mục </h3>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <!-- Product -->
+        <div class="col-sm-3 col-lg-4 col-md-3">
+            <div class="product-item" style="height: 500px; width: 150px; margin: 20px;">
+                <div>
+                    <div class="product discount product_filter" style="width: 280px; height: 280px;">
+
+                        <div class="product_image" style="width: 240px; margin: 30px; border-radius: 5px; text-align: center; float: left;">
+                            <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="Product Image">
+                        </div>
+
+                        <div class="favorite favorite_left"></div>
+                        <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                        <div class="product_info">
+                            <h6 class="product_name">@item.tenSanPham</h6>
+                            <div class="product_price" style="font-size:20px">@String.Format("{0:#,##0} VNĐ", item.donGia)</div>
+                        </div>
+
+                        <div class="red_button add_to_cart_button" style=" display: flex;">
+
+                            <a href="@Url.Action("ChiTiet", "DatHang", new { id = item.idSanPham})">Đặt hàng</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

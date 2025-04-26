@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebBangDiaNhac.Models.DanhMucSanPham>
+<p class="lead"> Danh mục </p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("SXDanhMuc","DatHang",new {id = item.idDanhMuc})" class="list-group-item">
+            @item.tenDanhMuc
+        </a>
+    }
+</div>
+

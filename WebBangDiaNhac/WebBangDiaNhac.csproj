@@ -132,7 +132,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DonHangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -473,10 +475,15 @@
     <Content Include="Views\User\DangNhap.cshtml" />
     <Content Include="Views\User\DangXuat.cshtml" />
     <Content Include="style.css.map" />
+    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Item\Chitiet.cshtml" />
+    <Content Include="Views\Item\DanhMuc.cshtml" />
+    <Content Include="Views\Item\SXDanhMuc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\GioHang\" />
     <Folder Include="Views\Shop\" />
   </ItemGroup>
   <ItemGroup>
