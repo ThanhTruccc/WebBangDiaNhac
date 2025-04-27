@@ -28,10 +28,12 @@ namespace WebBangDiaNhac.Models
         public Nullable<decimal> triGiaDon { get; set; }
         public string tenNguoiNhan { get; set; }
         public string diaChiGiaoHang { get; set; }
+        public string soDienThoaiNguoiNhan { get; set; }
     
         public virtual ChiTietDonHang__ ChiTietDonHang__ { get; set; }
         public virtual KhachHang KhachHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonVanChuyen> DonVanChuyens { get; set; }
+        public virtual TinhTrangDon TinhTrangDon { get; set; }
     }
 }

@@ -30,6 +30,8 @@
         <AssociationConnector Association="BangDiaNhacModel.FK_GioHang_ToTable" ManuallyRouted="false" />
         <AssociationConnector Association="BangDiaNhacModel.FK_KhachHang_ToTable" ManuallyRouted="false" />
         <AssociationConnector Association="BangDiaNhacModel.SanPham_DanhMuc" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BangDiaNhacModel.TinhTrangDon" Width="1.5" PointX="8.375" PointY="3.875" />
+        <AssociationConnector Association="BangDiaNhacModel.FK_DonHang_ToTable_1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

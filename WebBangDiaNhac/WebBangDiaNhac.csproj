@@ -194,6 +194,9 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TinhTrangDon.cs">
+      <DependentUpon>ModelBangDiaNhac.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

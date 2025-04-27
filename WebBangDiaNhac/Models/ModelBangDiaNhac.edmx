@@ -57,6 +57,7 @@
           <Property Name="triGiaDon" Type="money" />
           <Property Name="tenNguoiNhan" Type="nvarchar" MaxLength="50" />
           <Property Name="diaChiGiaoHang" Type="nvarchar(max)" />
+          <Property Name="soDienThoaiNguoiNhan" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DonVanChuyen">
           <Key>
@@ -144,6 +145,13 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TinhTrangDon">
+          <Key>
+            <PropertyRef Name="idTTDH" />
+          </Key>
+          <Property Name="idTTDH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tenTTDH" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_BinhLuanGopY_ToTable">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="BinhLuanGopY" Type="Self.BinhLuanGopY" Multiplicity="*" />
@@ -213,6 +221,18 @@
             </Principal>
             <Dependent Role="DonHang">
               <PropertyRef Name="idKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonHang_ToTable_1">
+          <End Role="TinhTrangDon" Type="Self.TinhTrangDon" Multiplicity="0..1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TinhTrangDon">
+              <PropertyRef Name="idTTDH" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="trangThaiDon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -315,6 +335,7 @@
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham_DanhMuc" EntityType="Self.SanPham_DanhMuc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TinhTrangDon" EntityType="Self.TinhTrangDon" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BinhLuanGopY_ToTable" Association="Self.FK_BinhLuanGopY_ToTable">
             <End Role="KhachHang" EntitySet="KhachHang" />
             <End Role="BinhLuanGopY" EntitySet="BinhLuanGopY" />
@@ -337,6 +358,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_DonHang_ToTable" Association="Self.FK_DonHang_ToTable">
             <End Role="KhachHang" EntitySet="KhachHang" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_ToTable_1" Association="Self.FK_DonHang_ToTable_1">
+            <End Role="TinhTrangDon" EntitySet="TinhTrangDon" />
             <End Role="DonHang" EntitySet="DonHang" />
           </AssociationSet>
           <AssociationSet Name="FK_DonVanChuyen_ToTable" Association="Self.FK_DonVanChuyen_ToTable">
@@ -433,6 +458,8 @@
           <NavigationProperty Name="KhachHang" Relationship="Self.FK_DonHang_ToTable" FromRole="DonHang" ToRole="KhachHang" />
           <NavigationProperty Name="DonVanChuyens" Relationship="Self.FK_DonVanChuyen_ToTable" FromRole="DonHang" ToRole="DonVanChuyen" />
           <Property Name="diaChiGiaoHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="soDienThoaiNguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TinhTrangDon" Relationship="BangDiaNhacModel.FK_DonHang_ToTable_1" FromRole="DonHang" ToRole="TinhTrangDon" />
         </EntityType>
         <EntityType Name="DonVanChuyen">
           <Key>
@@ -725,7 +752,32 @@
             <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="DanhMucSanPham" EntitySet="DanhMucSanPhams" />
           </AssociationSet>
+          <EntitySet Name="TinhTrangDons" EntityType="BangDiaNhacModel.TinhTrangDon" />
+          <AssociationSet Name="FK_DonHang_ToTable_1" Association="BangDiaNhacModel.FK_DonHang_ToTable_1">
+            <End Role="TinhTrangDon" EntitySet="TinhTrangDons" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TinhTrangDon">
+          <Key>
+            <PropertyRef Name="idTTDH" />
+          </Key>
+          <Property Name="idTTDH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tenTTDH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DonHangs" Relationship="BangDiaNhacModel.FK_DonHang_ToTable_1" FromRole="TinhTrangDon" ToRole="DonHang" />
+        </EntityType>
+        <Association Name="FK_DonHang_ToTable_1">
+          <End Type="BangDiaNhacModel.TinhTrangDon" Role="TinhTrangDon" Multiplicity="0..1" />
+          <End Type="BangDiaNhacModel.DonHang" Role="DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TinhTrangDon">
+              <PropertyRef Name="idTTDH" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="trangThaiDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -779,6 +831,7 @@
           <EntitySetMapping Name="DonHangs">
             <EntityTypeMapping TypeName="BangDiaNhacModel.DonHang">
               <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="soDienThoaiNguoiNhan" ColumnName="soDienThoaiNguoiNhan" />
                 <ScalarProperty Name="diaChiGiaoHang" ColumnName="diaChiGiaoHang" />
                 <ScalarProperty Name="idDonHang" ColumnName="idDonHang" />
                 <ScalarProperty Name="idKhachHang" ColumnName="idKhachHang" />
@@ -884,6 +937,14 @@
               <ScalarProperty Name="idDanhMuc" ColumnName="idDanhMuc" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="TinhTrangDons">
+            <EntityTypeMapping TypeName="BangDiaNhacModel.TinhTrangDon">
+              <MappingFragment StoreEntitySet="TinhTrangDon">
+                <ScalarProperty Name="tenTTDH" ColumnName="tenTTDH" />
+                <ScalarProperty Name="idTTDH" ColumnName="idTTDH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
