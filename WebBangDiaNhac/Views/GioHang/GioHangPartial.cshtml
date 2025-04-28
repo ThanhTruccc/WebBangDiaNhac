@@ -1,4 +1,39 @@
-﻿<a href="@Url.Action("GioHang", "GioHang")" class="giohang">
+﻿<style type="text/css">
+    .giohang {
+        position: relative; /* Đảm bảo rằng phần tử có thể chứa phần tử con được định vị tuyệt đối */
+        color: white; /* Màu chữ cho giỏ hàng */
+        font-size: large; /* Kích thước chữ lớn */
+        font-weight: bold; /* Làm đậm chữ */
+        text-decoration: none; /* Bỏ gạch chân */
+        background-color: #28a745; /* Màu nền xanh lá */
+        padding: 10px 15px; /* Padding xung quanh chữ */
+        border-radius: 5px; /* Bo tròn góc */
+        transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
+    }
+
+        /* Hiệu ứng hover */
+        .giohang:hover {
+            background-color: #000080; /* Thay đổi màu nền khi hover */
+            cursor: pointer; /* Thay đổi con trỏ chuột thành tay */
+        }
+
+    /* Hiển thị số lượng trong một vòng tròn */
+    .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: red; /* Màu nền của vòng tròn (đỏ) */
+        color: white; /* Màu chữ trong vòng tròn */
+        font-size: 12px; /* Kích thước chữ trong vòng tròn */
+        font-weight: bold; /* Làm đậm chữ trong vòng tròn */
+        padding: 5px 8px; /* Padding để số lượng không quá sát cạnh */
+        border-radius: 50%; /* Đảm bảo hình tròn */
+        min-width: 20px; /* Đảm bảo vòng tròn có kích thước tối thiểu */
+        text-align: center; /* Căn giữa chữ */
+        line-height: 1; /* Căn giữa chữ theo chiều dọc */
+    }
+</style>
+<a href="@Url.Action("GioHang", "GioHang")" class="giohang">
     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
     @if (ViewBag.TongSoLuong > 0)
     {

@@ -106,10 +106,17 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    @*<div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">@Html.Action("GioHangPartial", "GioHang")</span></p>
+                                    <div class="cart-btn">
+                                        <p>
+                                            <span class="icon-shopping-cart"></span>
+                                            @*<span id="checkout_items" class="checkout_items">@ViewBag.TongSoLuong</span>*@
+                                            @Html.Action("GioHangPartial", "GioHang")
+                                            <span class="quantity">
 
-                                    </div>*@
+                                            </span>
+                                        </p>
+
+                                    </div>
 
 
                                 </div>

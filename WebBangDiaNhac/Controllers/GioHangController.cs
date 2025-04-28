@@ -28,9 +28,10 @@ namespace WebBangDiaNhac.Controllers
             return lstGioHang;
         }
         // GET: GioHang
-        public ActionResult ThemGioHang(int Id, string strURL)
+       
+        public ActionResult ThemGioHang(int idSanPham, string strURL)
         {
-            SanPham m = db.SanPhams.SingleOrDefault(r => r.idSanPham == Id);
+            SanPham m = db.SanPhams.SingleOrDefault(r => r.idSanPham == idSanPham);
             if (m == null)
             {
                 Response.StatusCode = 404;
@@ -38,10 +39,10 @@ namespace WebBangDiaNhac.Controllers
             }
             List<GioHang> lstGioHang = LayGioHang();
             //Kiểm tra sp này đã tồn tại trong session[giohang] chưa
-            GioHang sanpham = lstGioHang.Find(n => n.idSanPham == Id);
+            GioHang sanpham = lstGioHang.Find(n => n.idSanPham == idSanPham);
             if (sanpham == null)
             {
-                sanpham = new GioHang(Id);
+                sanpham = new GioHang(idSanPham);
                 //Add sản phẩm mới thêm vào list
                 lstGioHang.Add(sanpham);
                 return Redirect(strURL);
