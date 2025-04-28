@@ -39,5 +39,6 @@ namespace WebBangDiaNhac.Models
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TinhTrangDon> TinhTrangDons { get; set; }
+        public virtual DbSet<HinhThucThanhToan> HinhThucThanhToans { get; set; }
     }
 }

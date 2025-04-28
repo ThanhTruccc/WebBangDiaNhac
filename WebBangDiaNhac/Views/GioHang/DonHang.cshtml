@@ -1,0 +1,121 @@
+﻿@using WebBangDiaNhac.Models;
+@{
+    ViewBag.Title = "DonHang";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="checkout-container">
+    <!-- Form đặt hàng -->
+    <div class="checkout-left">
+        <h1>Thanh Toán</h1>
+
+        <!-- Thông tin khách hàng -->
+        @{
+            WebBangDiaNhac.Models.KhachHang nd = (WebBangDiaNhac.Models.KhachHang)Session["user"];
+
+        }
+        @using (Html.BeginForm("DatHang", "GioHang", FormMethod.Post))
+        {
+            <form>
+                @Html.ValidationSummary(true)
+                <div>
+                    <div class="section">
+                        <h2>Thông Tin Khách Đặt Hàng</h2>
+
+
+                        <label for="name">Họ và Tên</label>
+                        <p style="font-size:20px; color:#962525;"> @nd.hoTen </p>
+                        <label for="email">Email</label>
+                        <p style="font-size:20px; color:#962525;"> @nd.email</p>
+                        <label for="phone">Số Điện Thoại</label>
+                        <p style="font-size:20px; color:#962525;"> @nd.soDienThoai </p>
+
+
+                    </div>
+                </div>
+
+                <!-- Thông tin giao hàng -->
+                <div class="section">
+                    <h2>Thông Tin Giao Hàng</h2>
+
+                    <label for="name">Họ và Tên Người Nhận</label>
+
+                    @Html.TextBox("tennguoinhan", null, new { @required = "required" })
+
+
+                    <label for="address">Địa Chỉ Nhận Hàng</label>
+
+                    @Html.TextBox("diachi", null, new { @required = "required" })
+
+                    <label for="phone">Số Điện Thoại Người Nhận</label>
+
+                    @Html.TextBox("phone", null, new { @required = "required" })
+
+                    <label for="date">Ngày Đặt</label>
+                    <p style="font-size:20px; color:#962525;"> @DateTime.Now.ToShortDateString() </p>
+
+                    <label for="date">Ngày Giao</label>
+
+                    @Html.TextBox("ngaygiao", null, new { type = "datetime-local", @required = "required" })
+
+
+                </div>
+
+                <!-- Phương thức thanh toán -->
+                <div class="section">
+                    <h2>Phương Thức Thanh Toán</h2>
+                    <div class="payment-options">
+                        <label>
+                            <input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng
+                        </label>
+                        <label>
+                                <input type="radio" name="payment" value=""> VNPay
+                            </label>
+                        <label>
+                                <input type="radio" name="payment" value=""> Momo
+                            </label>
+                        @*<button >
+                                <a href="~/GioHang/PaymentWithPayPal">Thanh toán qua PayPal</a>
+
+                            </button>*@
+                    </div>
+                </div>
+                <!-- Nút Xác Nhận -->
+                <input type="submit" value="Đặt hàng" class="btn-danger" />
+
+            </form>}
+
+    </div>
+
+    <!-- Giỏ hàng -->
+    <div class="checkout-right" style="font-weight: bold">
+        <h2>Giỏ Hàng Của Bạn</h2>
+
+        <ul class="cart-items">
+
+            @foreach (var item in Model)
+            {
+                <li class="cart-item">
+                    <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="" class="product-image" />
+                    <div class="item-details">
+                        <span class="item-name">@item.tenSanPham x @item.SoLuong</span>
+                        <span class="item-price">  @String.Format("{0:#,##0} VNĐ", item.ThanhTien)</span>
+                    </div>
+                </li>
+            }
+
+        </ul>
+        <div class="cart-total">
+            <span>Tổng Cộng:</span>
+            @{
+                var items = Model as IEnumerable<dynamic>;
+            }
+            <span class="total-price">
+                @String.Format("{0:#,##0} VNĐ", items.Sum(item => (decimal)item.donGia * (int)item.soLuong))
+            </span>
+
+        </div>
+    </div>
+
+</div>
+

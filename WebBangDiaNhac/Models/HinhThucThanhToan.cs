@@ -12,21 +12,18 @@ namespace WebBangDiaNhac.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TinhTrangDon
+    public partial class HinhThucThanhToan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TinhTrangDon()
+        public HinhThucThanhToan()
         {
             this.DonHangs = new HashSet<DonHang>();
-            this.DonVanChuyens = new HashSet<DonVanChuyen>();
         }
     
-        public string idTTDH { get; set; }
-        public string tenTTDH { get; set; }
+        public int idHTTT { get; set; }
+        public string tenHTTT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHang> DonHangs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonVanChuyen> DonVanChuyens { get; set; }
     }
 }

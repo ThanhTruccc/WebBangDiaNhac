@@ -23,5 +23,6 @@ namespace WebBangDiaNhac.Models
     
         public virtual DonHang DonHang { get; set; }
         public virtual DonViVanChuyen DonViVanChuyen { get; set; }
+        public virtual TinhTrangDon TinhTrangDon { get; set; }
     }
 }

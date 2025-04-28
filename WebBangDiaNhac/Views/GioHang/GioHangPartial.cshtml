@@ -1,0 +1,9 @@
+﻿<a href="@Url.Action("GioHang", "GioHang")" class="giohang">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    @if (ViewBag.TongSoLuong > 0)
+    {
+        <span class="cart-count">@ViewBag.TongSoLuong</span>
+    }
+
+</a>
+

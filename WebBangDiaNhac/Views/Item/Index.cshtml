@@ -53,7 +53,7 @@
                             <div class="product_price" style="font-size:20px">@String.Format("{0:#,##0} VNĐ", item.donGia)</div>
                         </div>
                         <div class="red_button add_to_cart_button" style=" display: flex;">
-                            <a href="@Url.Action("ChiTiet", "DatHang", new { id = item.idSanPham })">Đặt hàng</a>
+                            <a href="@Url.Action("Chitiet", "Item", new { id = item.idSanPham })">Đặt hàng</a>
                         </div>
                     </div>
                 </div>

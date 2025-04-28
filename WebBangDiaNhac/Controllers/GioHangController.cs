@@ -144,14 +144,18 @@ namespace WebBangDiaNhac.Controllers
 
         public ActionResult GioHangPartial()
         {
-            if (TongSoLuong() == 0)
+            try
             {
+                ViewBag.TongSoLuong = TongSoLuong();
+                ViewBag.TongTien = TongTien();
                 return PartialView();
             }
-            ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongTien = TongTien();
-            return PartialView();
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi tại GioHangPartial", ex);
+            }
         }
+
         //Xây dựng 1 view cho người dùng chỉnh sửa giỏ hàng
 
         public ActionResult SuaGioHang()
@@ -190,50 +194,38 @@ namespace WebBangDiaNhac.Controllers
                 idKhachHang = nd.idKhachHang,  
                 tenNguoiNhan = tennguoinhan,
                 diaChiGiaoHang = diachi,
-                DienThoaiNguoiNhan = phone,
-                NgayGiao = ngaygiao,
-                TinhTrangDonHang = 2,
-                TriGia = totalValue,
-                HinhThucThanhToan = payment == "cod" ? 1 : 2, // Assuming 1 is COD, 2 is card
+                soDienThoaiNguoiNhan = phone,
+                trangThaiDon = "2",
+                triGiaDon = totalValue,
+                hinhThucThanhToan = payment == "cod" ? 2 : 3,
             };
 
 
             // Add order to the database
             db.DonHangs.Add(order);
-            db.SaveChanges(); // Save to generate the MaDon (order ID)
+            db.SaveChanges(); 
 
             foreach (var item in lstGioHang)
             {
                 // Ensure valid item exists in the database
-                MonAn monAn = db.MonAns.SingleOrDefault(m => m.IdMon == item.IdMon);
-                if (monAn == null)
+                SanPham sp = db.SanPhams.SingleOrDefault(m => m.idSanPham == item.idSanPham);
+               
+
+                if (sp == null)
                 {
-                    ModelState.AddModelError("", $"IdMon {item.IdMon} khong tồn tại..");
+                    ModelState.AddModelError("", $"Id {item.idSanPham} khong tồn tại..");
                     return View(lstGioHang); // Return with error message if product is invalid
                 }
 
-                // Check if the product has a valid category
-                if (monAn.IdDanhMuc == null)
-                {
-                    ModelState.AddModelError("", $"IDmon {item.IdMon} k khả zụng.");
-                    return View(lstGioHang); // Return with error message if category is invalid
-                }
-
-                // Ensure that the category exists in the DanhMucMon table
-                var category = db.DanhMucSanPhams.SingleOrDefault(c => c.idDanhMuc == monAn.IdDanhMuc);
-                if (category == null)
-                {
-                    ModelState.AddModelError("", $"Danh mục IdMon  {item.IdMon} khong tồn tại.");
-                    return View(lstGioHang); // Return with error message if category does not exist
-                }
-
+                
+                
                 // Create and add order details
                 ChiTietDonHang__ orderDetail = new ChiTietDonHang__
                 {
-                    idDonHang = order.MaDon,  // Link order with MaDon
-                    idSanPham = item.IdSP,
-                    soLuong = item.SoLuong,
-                    donGia = item.DonGia
+                    idDonHang = order.idDonHang,  // Link order with MaDon
+                    idSanPham = item.idSanPham,
+                    soLuong = item.soLuong,
+                    donGia = item.donGia
                 };
 
                 db.ChiTietDonHang__.Add(orderDetail);
