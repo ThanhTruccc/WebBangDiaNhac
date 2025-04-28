@@ -31,7 +31,9 @@
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
-
+        @{
+            var u = Session["user"] as WebBangDiaNhac.Models.KhachHang;
+        }
         <!-- Navbar Area -->
         <div class="oneMusic-main-menu">
             <div class="classy-nav-container breakpoint-off">
@@ -71,24 +73,24 @@
                                             <li><a href="contact.html">ĐĨA THAN / VINYL</a></li>
                                             <li><a href="elements.html">BĂNG CASSETTE</a></li>
                                             @*<li>
-                                                    <a href="#">Dropdown</a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                        <li>
-                                                            <a href="#">Even Dropdown</a>
-                                                            <ul class="dropdown">
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                                <li><a href="#">Deeply Dropdown</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="#">Even Dropdown</a></li>
-                                                    </ul>
-                                                </li>*@
+                                                <a href="#">Dropdown</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li>
+                                                        <a href="#">Even Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
+                                            </li>*@
                                         </ul>
                                     </li>
                                     <li><a href="event.html">Events</a></li>
@@ -105,10 +107,10 @@
 
                                     <!-- Cart Button -->
                                     @*<div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">@Html.Action("GioHangPartial", "GioHang")</span></p> 
-                                       
+                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">@Html.Action("GioHangPartial", "GioHang")</span></p>
+
                                     </div>*@
-                                    
+
 
                                 </div>
                             </div>
