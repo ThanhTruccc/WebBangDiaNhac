@@ -88,7 +88,7 @@
           <Property Name="soLuong" Type="int" />
           <Property Name="hinhAnh" Type="varchar" MaxLength="50" />
           <Property Name="donGia" Type="money" />
-          <Property Name="thanhTien" Type="money" />
+          <Property Name="thanhTien" Type="money" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="HinhThucThanhToan">
           <Key>
@@ -304,18 +304,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GioHang_ToTable">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
-          <End Role="GioHang" Type="Self.GioHang" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="idSanPham" />
-            </Principal>
-            <Dependent Role="GioHang">
-              <PropertyRef Name="idSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_KhachHang_ToTable">
           <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="0..1" />
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
@@ -416,10 +404,6 @@
           <AssociationSet Name="FK_DonViVanChuyen_ToTable" Association="Self.FK_DonViVanChuyen_ToTable">
             <End Role="PhanQuyen" EntitySet="PhanQuyen" />
             <End Role="DonViVanChuyen" EntitySet="DonViVanChuyen" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GioHang_ToTable" Association="Self.FK_GioHang_ToTable">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="GioHang" EntitySet="GioHang" />
           </AssociationSet>
           <AssociationSet Name="FK_KhachHang_ToTable" Association="Self.FK_KhachHang_ToTable">
             <End Role="PhanQuyen" EntitySet="PhanQuyen" />
@@ -538,7 +522,6 @@
           <Property Name="hinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="donGia" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="thanhTien" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="SanPham" Relationship="Self.FK_GioHang_ToTable" FromRole="GioHang" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -585,7 +568,6 @@
           <Property Name="soLuongTon" Type="Int32" />
           <NavigationProperty Name="BinhLuanGopies" Relationship="Self.FK_BinhLuanGopY_ToTable_1" FromRole="SanPham" ToRole="BinhLuanGopY" />
           <NavigationProperty Name="ChiTietDonHang__" Relationship="Self.FK_ChiTietDonHang___ToTable_1" FromRole="SanPham" ToRole="ChiTietDonHang__" />
-          <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_ToTable" FromRole="SanPham" ToRole="GioHang" />
           <NavigationProperty Name="DanhMucSanPhams" Relationship="Self.SanPham_DanhMuc" FromRole="SanPham" ToRole="DanhMucSanPham" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -706,18 +688,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GioHang_ToTable">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
-          <End Role="GioHang" Type="Self.GioHang" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="idSanPham" />
-            </Principal>
-            <Dependent Role="GioHang">
-              <PropertyRef Name="idSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_KhachHang_ToTable">
           <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="0..1" />
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
@@ -783,10 +753,6 @@
           <AssociationSet Name="FK_DonViVanChuyen_ToTable" Association="Self.FK_DonViVanChuyen_ToTable">
             <End Role="PhanQuyen" EntitySet="PhanQuyens" />
             <End Role="DonViVanChuyen" EntitySet="DonViVanChuyens" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GioHang_ToTable" Association="Self.FK_GioHang_ToTable">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="GioHang" EntitySet="GioHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_KhachHang_ToTable" Association="Self.FK_KhachHang_ToTable">
             <End Role="PhanQuyen" EntitySet="PhanQuyens" />

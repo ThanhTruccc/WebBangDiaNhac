@@ -34,7 +34,6 @@ namespace WebBangDiaNhac.Models
         public virtual ICollection<BinhLuanGopY> BinhLuanGopies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang__> ChiTietDonHang__ { get; set; }
-        public virtual GioHang GioHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DanhMucSanPham> DanhMucSanPhams { get; set; }
     }

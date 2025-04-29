@@ -131,7 +131,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DonHangsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -434,11 +433,6 @@
     <Content Include="Areas\Assets\src\scss\variables\_spacing.scss" />
     <Content Include="Areas\Assets\src\scss\_global.scss" />
     <Content Include="Areas\Assets\src\scss\_variables.scss" />
-    <Content Include="Areas\Admin\Views\SanPhams\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPhams\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPhams\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPhams\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DonHangs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\DonHangs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\DonHangs\Details.cshtml" />

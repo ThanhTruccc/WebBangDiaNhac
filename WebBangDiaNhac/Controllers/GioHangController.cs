@@ -46,12 +46,14 @@ namespace WebBangDiaNhac.Controllers
                 //Add sản phẩm mới thêm vào list
                 lstGioHang.Add(sanpham);
                 return Redirect(strURL);
+                
             }
             else
             {
                 sanpham.soLuong++;
                 return Redirect(strURL);
             }
+            
         }
         public ActionResult CapNhatGioHang(int Id, FormCollection f)
         {
@@ -103,10 +105,10 @@ namespace WebBangDiaNhac.Controllers
         public ActionResult GioHang()
         {
 
-            //if (Session["GIOHANG"] == null)
-            //{
-            //    return RedirectToAction("Index", "DatHang");
-            //}
+            if (Session["GIOHANG"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             List<GioHang> lstGioHang = LayGioHang();
             return View(lstGioHang);
         }
@@ -145,16 +147,20 @@ namespace WebBangDiaNhac.Controllers
 
         public ActionResult GioHangPartial()
         {
-            try
+            List<GioHang> lstGioHang = Session["GIOHANG"] as List<GioHang>;
+
+            if (lstGioHang == null || !lstGioHang.Any())
             {
-                ViewBag.TongSoLuong = TongSoLuong();
-                ViewBag.TongTien = TongTien();
-                return PartialView();
+                ViewBag.TongSoLuong = 0;
+                ViewBag.TongTien = 0;
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception("Lỗi tại GioHangPartial", ex);
+                ViewBag.TongSoLuong = lstGioHang.Sum(n => n.soLuong);
+                ViewBag.TongTien = lstGioHang.Sum(n => n.thanhTien);
             }
+
+            return PartialView();
         }
 
         //Xây dựng 1 view cho người dùng chỉnh sửa giỏ hàng

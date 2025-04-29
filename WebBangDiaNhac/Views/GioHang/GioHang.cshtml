@@ -1,4 +1,5 @@
 ﻿@using WebBangDiaNhac.Models;
+@model List<GioHang>
 @{
     ViewBag.Title = "GioHang";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -84,8 +85,6 @@
         .btn-remove:active {
             transform: translateY(2px); /* Hiệu ứng khi nhấn */
         }
-
-    ``
 </style>
 
 <div class="cart-container">
@@ -105,26 +104,26 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.TenMon</td>
+                    <td>@item.tenSanPham</td>
                     <td>
                         <div class="product-info">
                             <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="" class="product-image" />
-                            
+
                         </div>
                     </td>
-                    <td>@String.Format("{0:#,##0} VNĐ", item.DonGia)</td>
+                    <td>@String.Format("{0:#,##0} VNĐ", item.donGia)</td>
 
-                    @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @IdMon = item.IdMon }))
+                    @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @idSanPham = item.idSanPham }))
                     {
-                        <td>@Html.TextBox("txtSoLuong", (int)item.soLuong)) </td>
+                        <td>@Html.TextBox("txtSoLuong", (int)item.soLuong))</td>
                         <td>
-                            @String.Format("{0:#,##0} VNĐ", item.ThanhTien)
+                            @String.Format("{0:#,##0} VNĐ", item.thanhTien)
                         </td>
                         <td>
                             <button type="submit" class="btn btn-update">Cập nhật</button>
                             <br />
                             <button class="btn btn-remove">
-                                @Html.ActionLink("Xóa", "XoaGioHang", new { @IdMon = item.IdMon })
+                                @Html.ActionLink("Xóa", "XoaGioHang", new { @idSanPham = item.idSanPham })
                             </button>
                         </td>
 
