@@ -64,22 +64,35 @@ namespace WebBangDiaNhac.Controllers
 
             return View(SPList);
         }
-
+        [OutputCache(Duration = 120, VaryByParam = "id")] // Tăng thời gian cache để phục vụ tốt hơn
         public ActionResult Chitiet(string id)
         {
-            int idSanPham = int.Parse(id);
-            var ctsp = from s in db.SanPhams
-                      where s.idSanPham == idSanPham
-                      select s;
-            return View(ctsp.Single());
+            if (!int.TryParse(id, out int idSanPham))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Dùng FirstOrDefault + AsNoTracking để giảm chi phí truy vấn EF
+            var ctsp = db.SanPhams
+                         .AsNoTracking() // không theo dõi entity => nhanh hơn
+                         .FirstOrDefault(s => s.idSanPham == idSanPham);
+
+            if (ctsp == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(ctsp);
         }
 
+        [OutputCache(Duration = 120, VaryByParam = "none")]
         public ActionResult DanhMuc()
         {
             var dm = from d in db.SanPhams
                      select d;
             return PartialView(dm);
         }
+        [OutputCache(Duration = 60, VaryByParam = "id")]
         public ActionResult SXDanhMuc(string id)
         {
             int idSanPham = int.Parse(id);

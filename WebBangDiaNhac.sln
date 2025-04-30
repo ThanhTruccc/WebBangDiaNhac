@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.35931.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBangDiaNhac", "WebBangDiaNhac\WebBangDiaNhac.csproj", "{AC4B8166-8ED0-405E-BF41-6B4848AC1BEC}"
 EndProject
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC4B8166-8ED0-405E-BF41-6B4848AC1BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC4B8166-8ED0-405E-BF41-6B4848AC1BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4B8166-8ED0-405E-BF41-6B4848AC1BEC}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4B8166-8ED0-405E-BF41-6B4848AC1BEC}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{AC4B8166-8ED0-405E-BF41-6B4848AC1BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC4B8166-8ED0-405E-BF41-6B4848AC1BEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7817D77-E9AB-4764-B0AF-17EC3EFD7C33}
 	EndGlobalSection
 EndGlobal
