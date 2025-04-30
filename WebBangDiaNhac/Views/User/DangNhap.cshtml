@@ -146,13 +146,15 @@
                             <div class="login-form">
                                 <form action="#" method="post">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter E-mail">
+                                        @Html.LabelFor(model => model.email, "Email đăng nhập", htmlAttributes: new { @class = "form-label" })
+                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @id = "form-username", @placeholder = "Email" } })
+                                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                                         <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                        @Html.LabelFor(model => model.matKhau, "Mật khẩu", htmlAttributes: new { @class = "form-label" })
+                                        @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control", @id = "form-password", type = "password", @placeholder = "Mật khẩu" } })
+                                        @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
                                     </div>
                                     <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                                     <small class="form-text text-muted" style="font-size: 0.8rem;">
