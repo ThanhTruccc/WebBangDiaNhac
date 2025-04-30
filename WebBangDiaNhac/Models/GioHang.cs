@@ -23,17 +23,11 @@ namespace WebBangDiaNhac.Models
         public Nullable<decimal> donGia { get; set; }
         public Nullable<decimal> thanhTien { get { return soLuong * donGia; } }
 
-        public GioHang(int IdMon)
+        public GioHang(int idSanPham)
         {
-            
-            
-                SanPham sp = db.SanPhams.SingleOrDefault(n => n.idSanPham == idSanPham);
-                if (sp == null)
-                {
-                    return; // hoặc dừng việc tạo đối tượng
-                }
-
-                tenSanPham = sp.tenSanPham;
+            this.idSanPham = idSanPham;
+            SanPham sp = db.SanPhams.SingleOrDefault(n => n.idSanPham == idSanPham);
+            this.tenSanPham = sp.tenSanPham;
                 hinhAnh = sp.hinhAnh;
                 donGia = decimal.Parse(sp.donGia.ToString());
                 soLuong = 1;
