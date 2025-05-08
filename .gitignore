@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/WebBangDiaNhac.sln
+/.gitignore
+/WebBangDiaNhac/WebBangDiaNhac.csproj
+/WebBangDiaNhac/Controllers/ItemController.cs
+/WebBangDiaNhac/packages.config
+/WebBangDiaNhac/Views/User/DangNhap.cshtml
+/WebBangDiaNhac/Web.config
+/WebBangDiaNhac/Views/Shared/_LayoutHome.cshtml
+/.gitignore
