@@ -26,216 +26,91 @@
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            
+            <h2>WELCOME!</h2>
         </div>
-    </div>
-
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-        <!-- Navbar Area -->
-        <div class="oneMusic-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
-
-                        <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
-                                    <li>
-                                        <a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li>
-                                                <a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li>
-                                                        <a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-
-                                <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+    <!-- ##### Login Area Start ##### -->
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Đăng Ký</h3>
+                        <!-- Login Form -->
+                        @using (Html.BeginForm("DangKy", "User", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="login-form">
+                                <form action="#" method="post">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.hoTen, "Họ và tên")
+                                        @Html.TextBoxFor(model => model.hoTen, new { @class = "form-control", placeholder = "Nhập họ và tên" })
+                                        @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
                                     </div>
-
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.diaChi, "Địa chỉ")
+                                        @Html.TextBoxFor(model => model.diaChi, new { @class = "form-control", placeholder = "Nhập địa chỉ liên hệ" })
+                                        @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Nav End -->
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.soDienThoai, "Số điện thoại")
+                                        @Html.TextBoxFor(model => model.soDienThoai, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
+                                        @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.email, "Email", htmlAttributes: new { @class = "form-label" })
+                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @id = "form-username", @placeholder = "Email" } })
+                                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                        <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.matKhau, "Mật khẩu", htmlAttributes: new { @class = "form-label" })
+                                        @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control", @id = "form-password", type = "password", @placeholder = "Mật khẩu" } })
+                                        @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+                                    </div>
+                                    <button type="submit" class="btn oneMusic-btn mt-30">Đăng ký</button>
+                                    <small class="form-text text-muted" style="font-size: 0.8rem;">
+                                        <i class="fa fa-lock mr-2"></i>nếu đã có tài khoản,
+                                        <a href="@Url.Action("DangNhap", "User")" class="text-decoration-none">Đăng nhập</a>
+                                    </small>
 
+
+                                </form>
+
+                            </div>
+                        }
                         </div>
-                    </nav>
                 </div>
             </div>
         </div>
-    </header>
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
-        <div class="bradcumbContent">
-
-        </div>
     </section>
-    <section>
-        <div class="register-container">
-            <h2 class="register-title">Đăng ký tài khoản</h2>
-            @using (Html.BeginForm("DangKy", "User", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.hoTen, "Họ và tên")
-                    @Html.TextBoxFor(model => model.hoTen, new { @class = "form-control", placeholder = "Nhập họ và tên" })
-                    @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.diaChi, "Địa chỉ")
-                    @Html.TextBoxFor(model => model.diaChi, new { @class = "form-control", type = "date" })
-                    @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.email, "Email")
-                    @Html.TextBoxFor(model => model.email, new { @class = "form-control", placeholder = "Nhập email" })
-                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.soDienThoai, "Số điện thoại")
-                    @Html.TextBoxFor(model => model.soDienThoai, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
-                    @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
-                </div>
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
 
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.matKhau, "Mật khẩu")
-                    @Html.PasswordFor(model => model.matKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
-                    @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
-                </div>
 
-                <button type="submit" class="btn-submit">Đăng ký</button>
-            }
+            </div>
         </div>
-    </section>
-    <style>
-        .register-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    </footer>
 
-        .register-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-            .form-control:focus {
-                border-color: #28a745;
-                box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-                outline: none;
-            }
-
-        .btn-submit {
-            width: 100%;
-            padding: 10px 15px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #28a745;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-            .btn-submit:hover {
-                background-color: #218838;
-            }
-
-        .text-danger {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-    </style>
+    <!-- ##### Footer Area Start ##### -->
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+</body>
+</html>
 
 

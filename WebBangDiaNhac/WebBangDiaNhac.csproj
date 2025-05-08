@@ -264,6 +264,7 @@
     <Content Include="css\magnific-popup.css" />
     <Content Include="css\one-music-icon.css" />
     <Content Include="css\owl.carousel.min.css" />
+    <Content Include="css\searchbox.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\classy.svg" />
     <Content Include="fonts\fontawesome-webfont.svg" />

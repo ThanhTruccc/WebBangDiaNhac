@@ -9,6 +9,7 @@
         Tìm kiếm sản phẩm: @Html.TextBox("searchString", ViewBag.SearchString as string)
         <input type="submit" value="Tìm" class="btn btn-primary" />
     </p>
+    
 }
 
 <style>
@@ -35,32 +36,36 @@
         color: white;
     }
 </style>
-
-
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
-            <!-- Chỉnh độ rộng để hiển thị 3 món trên mỗi dòng -->
-            <div class="product-item" style="height: 500px; margin: 20px;">
-                <div>
-                    <div class="product discount product_filter" style="width: 280px; height: 280px;">
-                        <div class="product_image" style="width: 240px; margin: 30px; border-radius: 5px; text-align: center;">
-                            <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="@item.tenSanPham" style="max-width: 100%; max-height: 100%;" />
-                        </div>
-                        <div class="product_info">
-                            <h6 class="product_name">@item.tenSanPham</h6>
-                            <div class="product_price" style="font-size:20px">@String.Format("{0:#,##0} VNĐ", item.donGia)</div>
-                        </div>
-                        <div class="red_button add_to_cart_button" style=" display: flex;">
-                            <a href="@Url.Action("Chitiet", "Item", new { id = item.idSanPham })">Đặt hàng</a>
-                        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+            <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
+                <div class="album-thumb">
+                    <a href="@Url.Action("Chitiet", "Item", new { id = item.idSanPham })">
+                        <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="@item.tenSanPham">
+                    </a>
+                    <!-- Album Price -->
+                    <div class="album-price">
+                        <p>@String.Format("{0:#,##0} VNĐ", item.donGia)</p>
                     </div>
+                    <!-- Play Icon -->
+                    <div class="play-icon">
+                        <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+                    </div>
+                </div>
+                <div class="album-info">
+                    <a href="#">
+                        <h5>@item.tenSanPham</h5>
+                    </a>
+                    <p>@item.ngheSi</p>
                 </div>
             </div>
         </div>
     }
 </div>
+
+
 
 
 <div class="pagination-container" style="text-align: center; margin-top: 20px;">

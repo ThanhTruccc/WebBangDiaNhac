@@ -38,17 +38,19 @@ namespace WebBangDiaNhac.Controllers
         }
 
         // GET: Item
-        public ActionResult Index(string searchString, int page = 1, int pageSize = 9)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 12)
         {
-            var query = db.SanPhams.ToList(); // Lấy hết dữ liệu về bộ nhớ
+            var query = db.SanPhams.ToList(); 
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 var keyword = RemoveDiacritics(searchString.ToLower());
-
-                query = query.Where(sp => !string.IsNullOrEmpty(sp.tenSanPham) && RemoveDiacritics(sp.tenSanPham.ToLower()).Contains(keyword)).ToList();
-
+                query = query.Where(sp =>
+                    !string.IsNullOrEmpty(sp.tenSanPham) &&
+                    RemoveDiacritics(sp.tenSanPham.ToLower()).Contains(keyword)
+                ).ToList();
             }
+
 
             var totalRecords = query.Count();
             var totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
