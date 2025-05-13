@@ -1,9 +1,22 @@
 ﻿@* Views/GioHang/GioHangPartial.cshtml *@
-@if (ViewBag.TongSoLuong > 0)
-{
-    <span class="cart-count">@ViewBag.TongSoLuong</span>
-}
-else
-{
-    <span class="cart-count">0</span>
-}
+<div class="cart-btn" style="position: relative;">
+    <a href="@Url.Action("GioHang", "GioHang")" class="cart-link">
+        <span class="icon-shopping-cart" style="font-size: 24px;"></span>
+        <span class="cart-count" style="
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            line-height: 18px;
+            font-size: 12px;
+            font-weight: bold;
+        ">
+            @ViewBag.TongSoLuong
+        </span>
+    </a>
+</div>

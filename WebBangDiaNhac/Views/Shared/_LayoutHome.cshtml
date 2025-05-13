@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var isCartPage = Request.Path.ToLower().Contains("/giohang");
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,21 +18,19 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="~/style.css">
-   
+
 </head>
 
 <body>
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+          
         </div>
     </div>
 
     <!-- ##### Header Area Start ##### -->
+
     <header class="header-area">
         @{
             var u = Session["user"] as WebBangDiaNhac.Models.KhachHang;
@@ -72,25 +73,7 @@
                                             <li><a href="blog.html">CD / DVD</a></li>
                                             <li><a href="contact.html">ĐĨA THAN / VINYL</a></li>
                                             <li><a href="elements.html">BĂNG CASSETTE</a></li>
-                                            @*<li>
-                        <a href="#">Dropdown</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Even Dropdown</a></li>
-                            <li><a href="#">Even Dropdown</a></li>
-                            <li><a href="#">Even Dropdown</a></li>
-                            <li>
-                                <a href="#">Even Dropdown</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Deeply Dropdown</a></li>
-                                    <li><a href="#">Deeply Dropdown</a></li>
-                                    <li><a href="#">Deeply Dropdown</a></li>
-                                    <li><a href="#">Deeply Dropdown</a></li>
-                                    <li><a href="#">Deeply Dropdown</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Even Dropdown</a></li>
-                        </ul>
-                    </li>*@
+                                           
                                         </ul>
                                     </li>
                                     <li><a href="event.html">Events</a></li>
@@ -98,7 +81,7 @@
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
 
-                                
+
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
@@ -108,9 +91,9 @@
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <a href="@Url.Action("GioHang", "GioHang")">
+                                        <a href="@Html.Action("GioHangPartial", "GioHang")">
                                             <p>
-                                                <span class="icon-shopping-cart"></span>
+
                                                 @ViewBag.TongSoLuong
 
                                                 <span class="quantity">
@@ -131,131 +114,24 @@
             </div>
         </div>
     </header>
+    }
     <!-- ##### Header Area End ##### -->
     <!-- ##### Hero Area Start ##### -->
-
-   
     <!-- ##### Hero Area End ##### -->
     <!-- ##### Latest Albums Area Start ##### -->
+
     
-    <section class="latest-albums-area section-padding-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading style-2">
-                        <p>See what’s new</p>
-                        <h2>Latest Albums</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-9">
-                    <div class="ablums-text text-center mb-70">
-                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="albums-slideshow owl-carousel">
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a1.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Cure</h5>
-                                </a>
-                                <p>Second Song</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a2.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Sam Smith</h5>
-                                </a>
-                                <p>Underground</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a3.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Will I am</h5>
-                                </a>
-                                <p>First</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a4.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Cure</h5>
-                                </a>
-                                <p>Second Song</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a5.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>DJ SMITH</h5>
-                                </a>
-                                <p>The Album</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a6.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Ustopable</h5>
-                                </a>
-                                <p>Unplugged</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a7.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Beyonce</h5>
-                                </a>
-                                <p>Songs</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- ##### Latest Albums Area End ##### -->
     <!-- ##### Buy Now Area Start ##### -->
     <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="section-heading style-2">
-                        <p>See what’s new</p>
-                        <h2>Sản phẩm mới</h2>
-                    </div>
-                </div>
+                
             </div>
 
-           @RenderBody()
-                </div>
-        
+            @RenderBody()
+        </div>
+
     </section>
     <!-- ##### Buy Now Area End ##### -->
     <!-- ##### Featured Artist Area Start ##### -->
@@ -621,7 +497,8 @@
                             Copyright &copy;
                             <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </a></p>
+                        </a>
+                    </p>
                 </div>
 
                 <div class="col-12 col-md-6">

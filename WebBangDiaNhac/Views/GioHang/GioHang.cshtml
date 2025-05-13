@@ -6,135 +6,238 @@
 }
 
 <style>
-    /* Nút Đặt hàng */
-    .btn-danger {
-        display: inline-block;
-        padding: 12px 30px; /* Điều chỉnh kích thước của nút */
-        font-size: 16px; /* Kích thước chữ */
-        font-weight: bold;
-        text-transform: uppercase; /* Chữ in hoa */
-        background-color: #d9534f; /* Màu đỏ */
-        color: #fff;
-        border: 2px solid #d9534f; /* Đường viền màu đỏ */
-        border-radius: 5px; /* Bo góc */
-        cursor: pointer;
-        text-align: center;
-        transition: all 0.3s ease; /* Hiệu ứng chuyển động */
+
+
+    .cart-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 20px;
     }
 
-        .btn-danger:hover {
-            background-color: #c9302c; /* Màu đỏ đậm khi hover */
-            border-color: #c9302c; /* Màu viền khi hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng đổ */
-        }
-
-        .btn-danger:focus {
-            outline: none; /* Bỏ viền khi click vào nút */
-        }
-
-        .btn-danger:active {
-            transform: translateY(2px); /* Nút bị "hạ" khi nhấn */
-        }
-    /* Container chứa các nút */
-    .button-container {
+    .cart-item {
         display: flex;
-        gap: 10px; /* Khoảng cách giữa các nút */
-        justify-content: flex-start; /* Căn trái hoặc thay thành 'center' để căn giữa */
+        align-items: center;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        justify-content: space-between;
+        gap: 20px;
     }
 
-    /* Nút "Cập nhật" */
-    .btn-update {
-        padding: 10px 20px;
-        font-size: 14px;
+    .cart-product {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+
+    .cart-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+
+    .cart-details {
+        flex: 1;
+    }
+
+    .cart-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .cart-prices {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .price-new {
+        color: red;
         font-weight: bold;
-        color: #fff;
-        background-color: #f44336; /* Màu xanh dương sáng */
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-size: 16px;
     }
 
-        .btn-update:hover {
-            background-color: #31b0d5; /* Màu xanh đậm khi hover */
-            transform: translateY(-2px); /* Hiệu ứng nâng lên khi hover */
-        }
+    .price-old {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 14px;
+    }
 
-        .btn-update:active {
-            transform: translateY(2px); /* Hiệu ứng khi nhấn */
-        }
+    .cart-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 
-    /* Nút "Xóa" */
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .btn-qty {
+        width: 30px;
+        height: 30px;
+        background: #f0f0f0;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .qty-input {
+        width: 40px;
+        height: 30px;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+    }
+
     .btn-remove {
-        padding: 10px 20px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #fff;
-        background-color: #f44336; /* Màu đỏ */
+        background: none;
         border: none;
-        border-radius: 4px;
+        font-size: 18px;
+        color: #888;
         cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
         .btn-remove:hover {
-            background-color: #c62828; /* Màu đỏ đậm khi hover */
-            transform: translateY(-2px); /* Hiệu ứng nâng lên khi hover */
+            color: red;
         }
 
-        .btn-remove:active {
-            transform: translateY(2px); /* Hiệu ứng khi nhấn */
+    .cart-footer {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 2px solid #eee;
+        padding-top: 20px;
+    }
+
+    .total-label {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .total-price {
+        font-size: 20px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .btn-order {
+        background-color: #f44336;
+        color: #fff;
+        font-weight: bold;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-order:hover {
+            background-color: #d32f2f;
         }
+
+    .action-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+
+    .qty-input {
+        width: 40px;
+        height: 30px;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+    }
+
+    .btn-update {
+        background-color: #0275d8;
+        color: #fff;
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-update:hover {
+            background-color: #025aa5;
+        }
+
+    .product-checkbox {
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
+        accent-color: red;
+    }
+
 </style>
 
 <div class="cart-container">
-    <h2 style="color:#f7901e; text-align: center;">GIỎ HÀNG CỦA BẠN</h2>
-    <table class="cart-table">
-        <thead>
-            <tr>
-                <th>Tên món</th>
-                <th>Hình</th>
-                <th>Đơn giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.tenSanPham</td>
-                    <td>
-                        <div class="product-info">
-                            <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="" class="product-image" />
+    <h2 style="text-align: center; color: #f7901e;">GIỎ HÀNG CỦA BẠN</h2>
+    <div style="margin-bottom: 20px;">
+        <label>
+            <input type="checkbox" id="selectAll" />
+            <strong>Chọn tất cả</strong>
+        </label>
+    </div>
 
-                        </div>
-                    </td>
-                    <td>@String.Format("{0:#,##0} VNĐ", item.donGia)</td>
+    @foreach (var item in Model)
+    {
+<div class="cart-item">
+    <input type="checkbox" class="product-checkbox" checked />
+    <div class="cart-product">
+        <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="@item.tenSanPham" class="cart-image" />
+        <div class="cart-details">
+            <div class="cart-title">@item.tenSanPham</div>
+            <div class="cart-prices">
+                <span class="price-new">@String.Format("{0:#,##0}đ", item.donGia)</span>
+                <span class="price-old">@String.Format("{0:#,##0}đ", item.donGia + 200000)</span>
+            </div>
+        </div>
+    
+    </div>
 
-                    @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @idSanPham = item.idSanPham }))
-                    {
-                        <td>@Html.TextBox("txtSoLuong", (int)item.soLuong))</td>
-                        <td>
-                            @String.Format("{0:#,##0} VNĐ", item.thanhTien)
-                        </td>
-                        <td>
-                            <button type="submit" class="btn btn-update">Cập nhật</button>
-                            <br />
-                            <button class="btn btn-remove">
-                                @Html.ActionLink("Xóa", "XoaGioHang", new { @idSanPham = item.idSanPham })
-                            </button>
-                        </td>
+    <div class="cart-actions">
+        @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.idSanPham }))
+        {
+            <div class="action-wrapper">
+                <div class="quantity-control">
 
-                    }
+                    <input type="number" name="txtSoLuong" class="qty-input" value="@item.soLuong" min="1" />
 
+                </div>
+                <button type="submit" class="btn-update">CẬP NHẬT</button>
+            </div>
+        }
+        <button class="btn-remove" onclick="location.href='@Url.Action("XoaGioHang", "GioHang", new { id = item.idSanPham })'">🗑</button>
+    </div>
+    </div>
+    }
 
-
-                </tr>
-            }
-        </tbody>
-    </table>
     <div class="cart-footer">
         <span class="total-label">Tổng cộng:</span>
         @{
@@ -143,12 +246,20 @@
         <span class="total-price">
             @String.Format("{0:#,##0} VNĐ", items.Sum(item => (decimal)item.donGia * (int)item.soLuong))
         </span>
-        @using (Html.BeginForm("DonHang", "GioHang", new { @class = "" }))
+        @using (Html.BeginForm("DonHang", "GioHang"))
         {
-            <input type="submit" value="Đặt hàng" class="btn-danger" />
+            <input type="submit" value="Đặt Hàng" class="btn-order" />
         }
-
     </div>
-
 </div>
+<script>
+    // Khi checkbox "Chọn tất cả" thay đổi trạng thái
+    document.getElementById('selectAll').addEventListener('change', function () {
+        var isChecked = this.checked;
+        var productCheckboxes = document.querySelectorAll('.product-checkbox');
 
+        productCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = isChecked;
+        });
+    });
+</script>
