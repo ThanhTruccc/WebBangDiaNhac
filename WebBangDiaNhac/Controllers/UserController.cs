@@ -27,7 +27,7 @@ namespace BangDiaNhac.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(new KhachHang());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -78,16 +78,15 @@ namespace BangDiaNhac.Controllers
         //dang nhap
         public ActionResult DangNhap()
         {
-            _kh = (KhachHang)Session["user"];
-            if (_kh != null)
-            {
+            if (Session["user"] != null)
                 return RedirectToAction("Index");
-            }
-            return View();
+
+            return View(new KhachHang()); // 👈 Truyền model rỗng để Razor không lỗi
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DangNhap(Login lg)
+        public ActionResult DangNhap(KhachHang lg)
         {
             _kh = (KhachHang)Session["user"];
 

@@ -38,35 +38,63 @@ namespace WebBangDiaNhac.Controllers
         }
 
         // GET: Item
-        public ActionResult Index(string searchString, int page = 1, int pageSize = 12)
+        public ActionResult Index(string sortOrder = "newest", string searchString = "", int page = 1, int pageSize = 12)
         {
-            var query = db.SanPhams.ToList(); 
+            var allowedSortOrders = new[] { "newest", "price_asc", "price_desc", "name_asc", "name_desc" };
+            if (!allowedSortOrders.Contains(sortOrder)) sortOrder = "newest";
 
+            // B1: Lấy toàn bộ dữ liệu từ DB trước
+            // B1: Lấy toàn bộ sản phẩm
+            var allProducts = db.SanPhams.ToList(); // DỮ LIỆU đã vào bộ nhớ → LINQ to Objects
+
+            // B2: Tìm kiếm (bỏ dấu tiếng Việt)
             if (!string.IsNullOrEmpty(searchString))
             {
-                var keyword = RemoveDiacritics(searchString.ToLower());
-                query = query.Where(sp =>
-                    !string.IsNullOrEmpty(sp.tenSanPham) &&
-                    RemoveDiacritics(sp.tenSanPham.ToLower()).Contains(keyword)
-                ).ToList();
+                string keyword = RemoveDiacritics(searchString.ToLower());
+
+                allProducts = allProducts
+                    .Where(sp => !string.IsNullOrEmpty(sp.tenSanPham) &&
+                                 RemoveDiacritics(sp.tenSanPham.ToLower()).Contains(keyword))
+                    .ToList(); // lọc xong → lưu lại
             }
 
+            // B3: Sắp xếp
+            switch (sortOrder)
+            {
+                case "price_asc":
+                    allProducts = allProducts.OrderBy(sp => sp.donGia).ToList();
+                    break;
+                case "price_desc":
+                    allProducts = allProducts.OrderByDescending(sp => sp.donGia).ToList();
+                    break;
+                case "name_asc":
+                    allProducts = allProducts.OrderBy(sp => sp.tenSanPham).ToList();
+                    break;
+                case "name_desc":
+                    allProducts = allProducts.OrderByDescending(sp => sp.tenSanPham).ToList();
+                    break;
+                default: // newest
+                    allProducts = allProducts.OrderByDescending(sp => sp.idSanPham).ToList();
+                    break;
+            }
 
-            var totalRecords = query.Count();
-            var totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            // B4: Phân trang
+            int totalItems = allProducts.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            var pageItems = allProducts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-            ViewBag.TotalPages = totalPages;
+            // B5: Truyền dữ liệu sang View
             ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.SortOrder = sortOrder;
             ViewBag.SearchString = searchString;
 
-            var SPList = query
-                        .Skip((page - 1) * pageSize)
-                        .Take(pageSize)
-                        .ToList();
+            return View(pageItems);
 
-            return View(SPList);
         }
-        [OutputCache(Duration = 120, VaryByParam = "id")] // Tăng thời gian cache để phục vụ tốt hơn
+
+
+            [OutputCache(Duration = 120, VaryByParam = "id")] // Tăng thời gian cache để phục vụ tốt hơn
         public ActionResult Chitiet(string id)
         {
             if (!int.TryParse(id, out int idSanPham))
@@ -103,5 +131,19 @@ namespace WebBangDiaNhac.Controllers
                       select d;
             return PartialView(sx);
         }
+
+        
+
+
+        public ActionResult FlashSale()
+        {
+            var allAlbums = db.SanPhams.ToList(); // hoặc lấy theo điều kiện tùy bạn
+            var random = new Random();
+            var randomAlbums = allAlbums.OrderBy(x => random.Next()).Take(4).ToList();
+
+            return View(randomAlbums);
+        }
+
+
     }
 }

@@ -3,7 +3,172 @@
     ViewBag.Title = "DonHang";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+<style>
+.checkout-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    background: #f7f9fb;
+    font-family: 'Segoe UI', sans-serif;
+}
 
+.checkout-left {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 700px;
+}
+
+h1, h2 {
+    color: #ff6600;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="datetime-local"]:focus {
+    border-color: #ff6600;
+    outline: none;
+}
+
+.payment-options label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.payment-options input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #ff6600;
+}
+
+.btn-danger {
+    background-color: #ff6600;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.btn-danger:hover {
+    background-color: #e65c00;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 0;
+}
+
+    .checkout-right {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        margin-left: 30px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+        .checkout-right h2 {
+            color: #ff6600;
+            margin-bottom: 20px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+    .cart-items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .cart-item {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+
+    .product-image {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+    }
+
+    .item-details {
+        flex: 1;
+    }
+
+    .item-name {
+        display: block;
+        font-size: 15px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .item-price {
+        font-size: 14px;
+        color: #e60000;
+        font-weight: bold;
+    }
+
+    .cart-total {
+        border-top: 2px solid #f0f0f0;
+        margin-top: 25px;
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+    }
+
+    .total-price {
+        color: #ff6600;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+</style>
 <div class="checkout-container">
     <!-- Form đặt hàng -->
     <div class="checkout-left">
@@ -16,74 +181,74 @@
         }
         @using (Html.BeginForm("DatHang", "GioHang", FormMethod.Post))
         {
-            <form>
-                @Html.ValidationSummary(true)
-                <div>
-                    <div class="section">
-                        <h2>Thông Tin Khách Đặt Hàng</h2>
 
-
-                        <label for="name">Họ và Tên</label>
-                        <p style="font-size:20px; color:#962525;"> @nd.hoTen </p>
-                        <label for="email">Email</label>
-                        <p style="font-size:20px; color:#962525;"> @nd.email</p>
-                        <label for="phone">Số Điện Thoại</label>
-                        <p style="font-size:20px; color:#962525;"> @nd.soDienThoai </p>
-
-
-                    </div>
-                </div>
-
-                <!-- Thông tin giao hàng -->
+            @Html.ValidationSummary(true)
+            <div>
                 <div class="section">
-                    <h2>Thông Tin Giao Hàng</h2>
-
-                    <label for="name">Họ và Tên Người Nhận</label>
-
-                    @Html.TextBox("tennguoinhan", null, new { @required = "required" })
+                    <h2>Thông Tin Khách Đặt Hàng</h2>
 
 
-                    <label for="address">Địa Chỉ Nhận Hàng</label>
-
-                    @Html.TextBox("diachi", null, new { @required = "required" })
-
-                    <label for="phone">Số Điện Thoại Người Nhận</label>
-
-                    @Html.TextBox("phone", null, new { @required = "required" })
-
-                    <label for="date">Ngày Đặt</label>
-                    <p style="font-size:20px; color:#962525;"> @DateTime.Now.ToShortDateString() </p>
-
-                    <label for="date">Ngày Giao</label>
-
-                    @Html.TextBox("ngaygiao", null, new { type = "datetime-local", @required = "required" })
+                    <label for="name">Họ và Tên</label>
+                    <p style="font-size:20px; color:#962525;"> @nd.hoTen </p>
+                    <label for="email">Email</label>
+                    <p style="font-size:20px; color:#962525;"> @nd.email</p>
+                    <label for="phone">Số Điện Thoại</label>
+                    <p style="font-size:20px; color:#962525;"> @nd.soDienThoai </p>
 
 
                 </div>
+            </div>
 
-                <!-- Phương thức thanh toán -->
-                <div class="section">
-                    <h2>Phương Thức Thanh Toán</h2>
-                    <div class="payment-options">
-                        <label>
-                            <input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng
-                        </label>
-                        <label>
-                                <input type="radio" name="payment" value=""> VNPay
-                            </label>
-                        <label>
-                                <input type="radio" name="payment" value=""> Momo
-                            </label>
-                        @*<button >
-                                <a href="~/GioHang/PaymentWithPayPal">Thanh toán qua PayPal</a>
+            <!-- Thông tin giao hàng -->
+            <div class="section">
+                <h2>Thông Tin Giao Hàng</h2>
 
-                            </button>*@
-                    </div>
+                <label for="name">Họ và Tên Người Nhận</label>
+
+                @Html.TextBox("tennguoinhan", null, new { @required = "required" })
+
+
+                <label for="address">Địa Chỉ Nhận Hàng</label>
+
+                @Html.TextBox("diachi", null, new { @required = "required" })
+
+                <label for="phone">Số Điện Thoại Người Nhận</label>
+
+                @Html.TextBox("phone", null, new { @required = "required" })
+
+                <label for="date">Ngày Đặt</label>
+                <p style="font-size:20px; color:#962525;"> @DateTime.Now.ToShortDateString() </p>
+
+                <label for="date">Ngày Giao</label>
+
+                @Html.TextBox("ngaygiao", null, new { type = "datetime-local", @required = "required" })
+
+
+            </div>
+
+            <!-- Phương thức thanh toán -->
+            <div class="section">
+                <h2>Phương Thức Thanh Toán</h2>
+                <div class="payment-options">
+                    <label>
+                        <input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value=""> VNPay
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value=""> Momo
+                    </label>
+                    @*<button >
+                            <a href="~/GioHang/PaymentWithPayPal">Thanh toán qua PayPal</a>
+
+                        </button>*@
                 </div>
-                <!-- Nút Xác Nhận -->
-                <input type="submit" value="Đặt hàng" class="btn-danger" />
+            </div>
+            <!-- Nút Xác Nhận -->
+            <input type="submit" value="Đặt hàng" class="btn-danger" />
 
-            </form>}
+        }
 
     </div>
 
@@ -98,8 +263,9 @@
                 <li class="cart-item">
                     <img src="@Url.Content("~/images/" + item.hinhAnh)" alt="" class="product-image" />
                     <div class="item-details">
-                        <span class="item-name">@item.tenSanPham x @item.SoLuong</span>
-                        <span class="item-price">  @String.Format("{0:#,##0} VNĐ", item.ThanhTien)</span>
+                        <span class="item-name">@item.tenSanPham x @item.soLuong</span>
+                        <span class="item-price">@String.Format("{0:#,##0} VNĐ", item.thanhTien)</span>
+
                     </div>
                 </li>
             }

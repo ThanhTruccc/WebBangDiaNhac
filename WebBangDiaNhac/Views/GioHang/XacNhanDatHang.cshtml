@@ -3,6 +3,28 @@
     ViewBag.Title = "XacNhanDatHang";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+<style>
+h2 {
+    font-size: 28px;
+    color: #28a745; /* Màu xanh lá xác nhận */
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    position: relative;
+}
 
-<h2>XacNhanDatHang</h2>
+h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #28a745;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+</style>
+<h2>Xác Nhận Đã Đặt Hàng Thành Công </h2>
 

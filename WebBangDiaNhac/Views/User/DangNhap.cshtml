@@ -4,79 +4,44 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-
 @using (Html.BeginForm("DangNhap", "User", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <!-- Title -->
-        <title>One Music - Modern Music HTML5 Template</title>
+    <!-- Giao diện trang đăng nhập -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>WELCOME!</p>
+        </div>
+    </section>
 
-        <!-- Favicon -->
-        <link rel="icon" href="img/core-img/favicon.ico">
-
-        <!-- Stylesheet -->
-        <link rel="stylesheet" href="style.css">
-
-    </head>
-
-    <body>
-        <!-- ##### Header Area End ##### -->
-        <!-- ##### Breadcumb Area Start ##### -->
-        <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
-            <div class="bradcumbContent">
-                <p>WELCOME!</p>
-               
-            </div>
-        </section>
-        <!-- ##### Breadcumb Area End ##### -->
-        <!-- ##### Login Area Start ##### -->
-        <section class="login-area section-padding-100">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-8">
-                        <div class="login-content">
-                            <h3>Đăng nhập</h3>
-                            <!-- Login Form -->
-                            <div class="login-form">
-                                <form action="#" method="post">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.email, "Email đăng nhập", htmlAttributes: new { @class = "form-label" })
-                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @id = "form-username", @placeholder = "Email" } })
-                                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                                        <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.matKhau, "Mật khẩu", htmlAttributes: new { @class = "form-label" })
-                                        @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control", @id = "form-password", type = "password", @placeholder = "Mật khẩu" } })
-                                        @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
-                                    </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
-                                    <small class="form-text text-muted" style="font-size: 0.8rem;">
-                                        <i class="fa fa-lock mr-2"></i>nếu chưa có tài khoản,
-                                        <a href="@Url.Action("DangKy", "User")" class="text-decoration-none">đăng ký</a>
-                                    </small>
-
-
-                        </form>
-
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Đăng nhập</h3>
+                        <div class="login-form">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.email, "Email đăng nhập", htmlAttributes: new { @class = "form-label" })
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @id = "form-username", @placeholder = "Email" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.matKhau, "Mật khẩu", htmlAttributes: new { @class = "form-label" })
+                                @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control", @id = "form-password", type = "password", @placeholder = "Mật khẩu" } })
+                                @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
+                            <small class="form-text text-muted" style="font-size: 0.8rem;">
+                                <i class="fa fa-lock mr-2"></i>nếu chưa có tài khoản,
+                                <a href="@Url.Action("DangKy", "User")" class="text-decoration-none">đăng ký</a>
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-
-}
-
-
+    </section>
+} 

@@ -1,98 +1,155 @@
-﻿@using WebBangDiaNhac.Models
+﻿@model WebBangDiaNhac.Models.SanPham
 @{
-    ViewBag.Title = "Chitiet";
+    ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
-
 <style>
-
-    .product_details {
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-top: 40px;
     }
 
-    .product_details_title h3 {
-        margin-bottom: 10px;
+    .product-image {
+        flex: 1 1 45%;
+        text-align: center;
     }
 
-    .product_price p {
-        color: red;
-        font-size: 22px;
-        font-family: 'Times New Roman', Times, serif;
-    }
-
-    .star_rating li {
-        margin-right: 5px;
-        font-size: 20px;
-    }
-
-    .star_rating i {
-        transition: color 0.3s ease;
-    }
-
-        .star_rating i:hover {
-            color: #ffb300;
-            cursor: pointer;
+        .product-image img {
+            max-width: 100%;
+            border-radius: 10px;
         }
 
-    .product_details .btn-danger {
-        background-color: #d9534f;
-        border: none;
-        transition: background-color 0.3s ease;
+    .product-info {
+        flex: 1 1 45%;
+        font-family: 'Segoe UI', sans-serif;
     }
 
-        .product_details .btn-danger:hover {
-            background-color: #c9302c;
-            cursor: pointer;
+        .product-info h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-info .price {
+            font-size: 26px;
+            color: #c9302c;
+            margin: 20px 0;
+        }
+
+        .product-info select,
+        .product-info input[type=number] {
+            padding: 6px 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            width: 100px;
+        }
+
+    .btn-add {
+        background-color: #961b1e;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 4px;
+        transition: 0.3s;
+    }
+
+        .btn-add:hover {
+            background-color: #7d1416;
+        }
+
+    .tab-container {
+        margin-top: 40px;
+    }
+
+    .tab {
+        padding: 10px 20px;
+        display: inline-block;
+        border: none;
+        background: transparent;
+        font-weight: bold;
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+    }
+
+        .tab.active {
+            border-color: #961b1e;
+        }
+
+    .tab-content {
+        display: none;
+        margin-top: 20px;
+    }
+
+        .tab-content.active {
+            display: block;
         }
 </style>
 
-<div class="row">
-    <div class="col-lg-6">
-        <div class="single_product_image_background">
-            <img src="~/images/@Model.hinhAnh" style="width: 100%; max-width: 450px; height: auto; margin: 30px auto; display: block; border-radius: 8px;" />
+<div class="container">
+    <div class="product-container">
+        <!-- Hình ảnh -->
+        <div class="product-image">
+            <img src="~/images/@Model.hinhAnh" alt="@Model.tenSanPham" />
+        </div>
+
+        <!-- Thông tin -->
+        <div class="product-info">
+            <h2>@Model.tenSanPham</h2>
+            <p><strong>Tình trạng:</strong> Còn hàng</p>
+            <p><strong>Xuất xứ:</strong> Việt Nam</p>
+            <p><strong>Thương hiệu:</strong> Hãng Đĩa Thời Đại</p>
+
+            <div class="price">
+                @String.Format("{0:#,##0}₫", Model.donGia)
+            </div>
+
+            <label>Tiêu đề:</label>
+            <select>
+                <option>Standard CD</option>
+                <option>Deluxe CD</option>
+            </select>
+
+            <div>
+                <label>Số lượng:</label>
+                <input type="number" name="quantity" value="1" min="1" />
+            </div>
+
+            @using (Html.BeginForm("ThemGioHang", "GioHang", new { idSanPham = Model.idSanPham, strURL = Request.Url.ToString() }))
+            {
+                <input type="submit" value="Thêm vào giỏ" class="btn-add" />
+            }
+
+            <p style="margin-top: 10px;"><i>Chia sẻ</i></p>
         </div>
     </div>
-    <div class="col-lg-4" style="margin-top: 60px;">
-        <div class="product_details">
-            <!-- Tên món ăn -->
-            <div class="product_details_title">
-                <h3 style="font-weight: bold; color: #961b1e; font-size: 24px;">@Model.tenSanPham</h3>
-                <p style="font-size: 16px; color: #555;">@Model.moTa</p>
-            </div>
 
+    <!-- Tabs -->
+    <div class="tab-container">
+        <button class="tab active" onclick="showTab('mota')">Mô tả sản phẩm</button>
+        <button class="tab" onclick="showTab('doitra')">Chính sách đổi trả</button>
 
-
-            <div class="product_price">
-                <p style="color: red; font-size: 22px; margin-top: 20px;">
-
-
-                    Đơn giá: @String.Format("{0:#,##0} VNĐ", @Model.donGia)
-                </p>
-            </div>
-            <ul class="star_rating" style=" color: #ffd800; display: flex">
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-            </ul>
-            <div style=" background:#e1e1e1; text-align:center">
-                <span><img src="~/images/truck.png">Miễn phí giao hàng</span>
-            </div>
-
-
-
+        <div id="mota" class="tab-content active">
+            <p>@Model.moTa</p>
         </div>
-        
-        @using (@Html.BeginForm("ThemGioHang", "GioHang", new { @idSanPham = @Model.idSanPham, @strURL = Request.Url.ToString() }))
-        {
-            
-            <input type="submit" value="Mua hàng" class="btn btn-danger" style="font-weight: bold; padding: 10px 20px; border-radius: 5px; font-size: 16px; width: 100%; margin-top: 20px;" />
-        }
 
+        <div id="doitra" class="tab-content">
+            <p>
+                Hàng đã mua không được đổi trả nếu không có lỗi từ phía nhà sản xuất.<br />
+                Vui lòng kiểm tra kỹ hàng hóa trước khi thanh toán.
+            </p>
+        </div>
     </div>
 </div>
 
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        event.target.classList.add('active');
+    }
+</script>

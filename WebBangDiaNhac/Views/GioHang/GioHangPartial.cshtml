@@ -1,22 +1,17 @@
 ﻿@* Views/GioHang/GioHangPartial.cshtml *@
-<div class="cart-btn" style="position: relative;">
-    <a href="@Url.Action("GioHang", "GioHang")" class="cart-link">
-        <span class="icon-shopping-cart" style="font-size: 24px;"></span>
-        <span class="cart-count" style="
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: red;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            text-align: center;
-            line-height: 18px;
-            font-size: 12px;
-            font-weight: bold;
-        ">
-            @ViewBag.TongSoLuong
-        </span>
+@{
+    List<WebBangDiaNhac.Models.GioHang> lstGioHang = Session["GIOHANG"] as List<WebBangDiaNhac.Models.GioHang>;
+
+    ViewBag.TongSoLuong = lstGioHang?.Sum(n => n.soLuong) ?? 0;
+    ViewBag.TongTien = lstGioHang?.Sum(n => n.thanhTien) ?? 0;
+}
+
+<div class="cart-btn text-right">
+    <a href="@Url.Action("GioHang", "GioHang")" class="header-cart" style="display: flex; align-items: center;">
+        <i class="fa fa-shopping-cart" style="color: darkred; font-size: 22px; margin-right: 10px;"></i>
+        <div style="border-left: 1px solid #444; padding-left: 10px;">
+            <div style="font-style: italic; font-weight: bold;">Giỏ hàng</div>
+            <div>@ViewBag.TongSoLuong Sản phẩm @String.Format("{0:#,##0}đ", ViewBag.TongTien)</div>
+        </div>
     </a>
 </div>

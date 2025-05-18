@@ -53,7 +53,8 @@ namespace WebBangDiaNhac.Controllers
                 sanpham.soLuong++;
                 return Redirect(strURL);
             }
-            
+          
+
         }
         public ActionResult CapNhatGioHang(int Id, FormCollection f)
         {
@@ -147,6 +148,7 @@ namespace WebBangDiaNhac.Controllers
 
         public ActionResult GioHangPartial()
         {
+           
             List<GioHang> lstGioHang = Session["GIOHANG"] as List<GioHang>;
 
             if (lstGioHang == null || !lstGioHang.Any())

@@ -242,6 +242,7 @@
     <Content Include="Areas\Assets\src\assets\img\error-404-monochrome.svg" />
     <Content Include="Areas\Assets\src\js\scripts.js" />
     <Content Include="audio\dummy-audio.mp3" />
+    <Content Include="audio\LIKEJENNIE.mp3" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -283,6 +284,7 @@
     <Content Include="images\7.jpg" />
     <Content Include="images\8.jpg" />
     <Content Include="images\9.jpg" />
+    <Content Include="img\bg-img\1000anhmat.jpg" />
     <Content Include="img\bg-img\a1.jpg" />
     <Content Include="img\bg-img\a10.jpg" />
     <Content Include="img\bg-img\a11.jpg" />
@@ -298,6 +300,8 @@
     <Content Include="img\bg-img\add.gif" />
     <Content Include="img\bg-img\add2.gif" />
     <Content Include="img\bg-img\add3.gif" />
+    <Content Include="img\bg-img\amde.jpg" />
+    <Content Include="img\bg-img\apple.jpg" />
     <Content Include="img\bg-img\b1.jpg" />
     <Content Include="img\bg-img\b2.jpg" />
     <Content Include="img\bg-img\b3.jpg" />
@@ -322,6 +326,8 @@
     <Content Include="img\bg-img\e8.jpg" />
     <Content Include="img\bg-img\e9.jpg" />
     <Content Include="img\bg-img\fa.jpg" />
+    <Content Include="img\bg-img\jennieruby.jpg" />
+    <Content Include="img\bg-img\logo.png" />
     <Content Include="img\bg-img\pa1.jpg" />
     <Content Include="img\bg-img\pa2.jpg" />
     <Content Include="img\bg-img\pa3.jpg" />
@@ -330,6 +336,7 @@
     <Content Include="img\bg-img\pa6.jpg" />
     <Content Include="img\bg-img\pa7.jpg" />
     <Content Include="img\bg-img\rosiebia.png" />
+    <Content Include="img\bg-img\rosiemessy.png" />
     <Content Include="img\bg-img\s1.jpg" />
     <Content Include="img\bg-img\s2.jpg" />
     <Content Include="img\bg-img\s3.jpg" />
@@ -337,6 +344,8 @@
     <Content Include="img\bg-img\soobinbia.png" />
     <Content Include="img\bg-img\soobin_bia.jpg" />
     <Content Include="img\bg-img\t1.jpg" />
+    <Content Include="img\bg-img\vanvat.jpg" />
+    <Content Include="img\bg-img\wrong.jpg" />
     <Content Include="img\bg-img\wt1.jpg" />
     <Content Include="img\bg-img\wt10.jpg" />
     <Content Include="img\bg-img\wt11.jpg" />
@@ -489,6 +498,7 @@
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\GioHang.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\Item\Shop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
